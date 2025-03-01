@@ -15,15 +15,15 @@ class Api {
 
     try {
       // API Call
-      final r = await http.get(hostUrl);
+      final response = await http.get(hostUrl);
 
       // Handle Response
-      if (r.statusCode == 200) {
-        data = json.decode(r.body);
+      if (response.statusCode == 200) {
+        data = json.decode(response.body);
         Logger.log("Response Success: ", "Data: ${data.toString()}");
         return data;
       } else {
-        Logger.log("Response Failure: ", "Status Code: ${r.statusCode}\nData: ${data.toString()}");
+        Logger.log("Response Failure: ", "Status Code: ${response.statusCode}");
         return null;
       }
     } catch (e) {

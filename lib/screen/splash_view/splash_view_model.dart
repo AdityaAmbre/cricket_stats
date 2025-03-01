@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:cricket_stats/core/api.dart';
 import 'package:cricket_stats/util/logger.dart';
 import 'package:cricket_stats/constant/constant.dart';
+import 'package:cricket_stats/model/cricket_model.dart';
 import 'package:cricket_stats/screen/match_view/match_view.dart';
 
 class SplashViewModel extends BaseViewModel {
   BuildContext context;
   bool isLoading = false;
   Api api = Api();
+  CricketModel? cricketModelFirstApi;
+  CricketModel? cricketModelSecondApi;
 
   SplashViewModel(this.context);
 
@@ -20,22 +23,34 @@ class SplashViewModel extends BaseViewModel {
     redirectToNextPage();
   }
 
+  /// Loader
   void toggleLoading() {
     isLoading = !isLoading;
     notifyListeners();
   }
 
   /// Load data from API
-  loadData() async {
-    // Call First Match API
+  Future<void> loadData() async {
+    cricketModelFirstApi = await apiCall(cricketModelFirstApi, Constant.matchFirstURL);
+    cricketModelSecondApi = await apiCall(cricketModelSecondApi, Constant.matchSecondURL);
+  }
+
+  /// Handle API Call
+  Future<CricketModel?> apiCall(CricketModel? cricketModel, String url) async {
+    // API Call
     toggleLoading();
-    await api.apiCallHttpGet(Constant.matchFirstURL);
+    Map<String, dynamic>? data = await api.apiCallHttpGet(url);
+    if (data != null) {
+      cricketModel = CricketModel.fromJson(data);
+    }
     toggleLoading();
 
-    // Call Second Match API
-    toggleLoading();
-    await api.apiCallHttpGet(Constant.matchSecondURL);
-    toggleLoading();
+    // Handle Response
+    if (cricketModel != null) {
+      return cricketModel;
+    } else {
+      return null;
+    }
   }
 
   /// Re-direct to Match View
