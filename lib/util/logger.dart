@@ -4,15 +4,15 @@ class Logger {
   Logger();
 
   static logTitle(String tag, String msg) {
-    debugPrint("------------------------------Start $tag------------------------------");
+    debugPrint("\n\n------------------------------ Start $tag ------------------------------");
     debugPrint(msg);
-    debugPrint("------------------------------End $tag------------------------------");
+    debugPrint("------------------------------ End $tag ------------------------------\n\n");
   }
 
   static log(String tag, String msg) {
-    debugPrint("---------------Start $tag---------------");
+    debugPrint("\n\n--------------- Start $tag ---------------");
     debugPrint(msg);
-    debugPrint("---------------End $tag---------------");
+    debugPrint("--------------- End $tag ---------------\n\n");
   }
 
 }

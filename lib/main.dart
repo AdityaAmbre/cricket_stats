@@ -2,9 +2,9 @@
 /// Designed & Developed by, Aditya Ambre
 /// Created on: 01-March-2025 | 11:16 IST
 
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:cricket_stats/constant/constant.dart';
 import 'package:cricket_stats/screen/splash_view/splash_view.dart';
 
