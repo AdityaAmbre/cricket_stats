@@ -13,6 +13,7 @@ class SplashViewModel extends BaseViewModel {
   Api api = Api();
   CricketModel? cricketModelFirstApi;
   CricketModel? cricketModelSecondApi;
+  List<CricketModel?>? cricketModelApiList = [];
 
   SplashViewModel(this.context);
 
@@ -20,6 +21,7 @@ class SplashViewModel extends BaseViewModel {
     Logger.logTitle("SplashViewModel INIT", "init ${Constant.appName}");
 
     await loadData();
+    loadResponseModelList();
     redirectToNextPage();
   }
 
@@ -31,12 +33,14 @@ class SplashViewModel extends BaseViewModel {
 
   /// Load data from API
   Future<void> loadData() async {
-    cricketModelFirstApi = await apiCall(cricketModelFirstApi, Constant.matchFirstURL);
-    cricketModelSecondApi = await apiCall(cricketModelSecondApi, Constant.matchSecondURL);
+    cricketModelFirstApi = await apiCall(Constant.matchFirstURL);
+    cricketModelSecondApi = await apiCall(Constant.matchSecondURL);
   }
 
   /// Handle API Call
-  Future<CricketModel?> apiCall(CricketModel? cricketModel, String url) async {
+  Future<CricketModel?> apiCall(String url) async {
+    CricketModel? cricketModel;
+
     // API Call
     toggleLoading();
     Map<String, dynamic>? data = await api.apiCallHttpGet(url);
@@ -53,8 +57,21 @@ class SplashViewModel extends BaseViewModel {
     }
   }
 
+  void loadResponseModelList() {
+    if (cricketModelFirstApi != null) {
+      cricketModelApiList?.add(cricketModelFirstApi);
+    }
+    if (cricketModelSecondApi != null) {
+      cricketModelApiList?.add(cricketModelSecondApi);
+    }
+  }
+
   /// Re-direct to Match View
   void redirectToNextPage() {
-    Get.to(const MatchView());
+    if (cricketModelApiList != null) {
+      if (cricketModelApiList!.isNotEmpty) {
+        Get.to(MatchView(cricketModelApiList!));
+      }
+    }
   }
 }
