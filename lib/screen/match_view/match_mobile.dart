@@ -181,7 +181,8 @@ class MatchMobile extends StatelessWidget {
                         key: "Result",
                         value: viewModel.cricketModelApiList[index]?.matchdetail?.result ?? "",
                       ),
-                      const Divider(thickness: 0.25),
+                      const Divider(thickness: 0.5),
+                      /// Match Detail
                       ExpansionTile(
                         tilePadding: const EdgeInsets.all(0),
                         shape: Border.all(style: BorderStyle.none),
@@ -221,6 +222,206 @@ class MatchMobile extends StatelessWidget {
                                   displayRow(key: "• Referee", value: viewModel.cricketModelApiList[index]?.matchdetail?.officials?.referee ?? ""),
                                 ],
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      /// Innings
+                      ExpansionTile(
+                        tilePadding: const EdgeInsets.all(0),
+                        shape: Border.all(style: BorderStyle.none),
+                        title: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Innings", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                              overflow: TextOverflow.visible),
+                        ),
+                        children: [
+                          ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: viewModel.cricketModelApiList[index]?.innings.length ?? 0,
+                          itemBuilder: (context, inningIndex) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Inning ${inningIndex+1}:", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    displayRow(key: "• Number", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].number ?? ""),
+                                    displayRow(key: "• Batting Team", value: viewModel.cricketModelApiList[index]?.matchdetail?.teamAway ?? ""),
+                                    displayRow(key: "• Total", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].total ?? ""),
+                                    displayRow(key: "• Wickets", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].wickets ?? ""),
+                                    displayRow(key: "• Overs", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].overs ?? ""),
+                                    displayRow(key: "• Run Rate", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].runrate ?? ""),
+                                    displayRow(key: "• Byes", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].byes ?? ""),
+                                    displayRow(key: "• Leg Byes", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].legbyes ?? ""),
+                                    displayRow(key: "• Wides", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].wides ?? ""),
+                                    displayRow(key: "• No Balls", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].noballs ?? ""),
+                                    displayRow(key: "• Penalty", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].penalty ?? ""),
+                                    displayRow(key: "• Allotted Overs", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].allottedOvers ?? ""),
+                                    const SizedBox(height: 05),
+                                    const Divider(thickness: 0.5),
+                                    const SizedBox(height: 05),
+                                    const Text("Batsmen", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen.length ?? 0,
+                                      itemBuilder: (context, batsmanIndex) {
+                                        return ListTile(
+                                          title: Text('• Batsman: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].batsman}'),
+                                          subtitle: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text('Runs: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].runs}'),
+                                              Text('Balls: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].balls}'),
+                                              Text('Fours: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].fours}'),
+                                              Text('Dots: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].dots}'),
+                                              Text('Strikerate: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].strikerate}'),
+                                              Text('Dismissal: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].dismissal}'),
+                                              Text('Howout: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].howout}'),
+                                              Text('Bowler: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].bowler}'),
+                                              Text('Fielder: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[batsmanIndex].fielder}'),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    const SizedBox(height: 05),
+                                    const Divider(thickness: 0.25),
+                                    const SizedBox(height: 05),
+                                    const Text("Partnership Current", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    displayRow(key: "• Runs", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].partnershipCurrent?.runs ?? ""),
+                                    displayRow(key: "• Balls", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].partnershipCurrent?.balls ?? ""),
+                                    const SizedBox(height: 05),
+                                    const Divider(thickness: 0.25),
+                                    const SizedBox(height: 05),
+                                    const Text("Bowlers", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers.length ?? 0,
+                                      itemBuilder: (context, bowlersIndex) {
+                                        return ListTile(
+                                          title: Text('• Bowlers: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].batsmen[bowlersIndex].bowler}'),
+                                          subtitle: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text('Bowler: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].bowler}'),
+                                              Text('Overs: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].overs}'),
+                                              Text('Maidens: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].maidens}'),
+                                              Text('Runs: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].runs}'),
+                                              Text('Wickets: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].wickets}'),
+                                              Text('Economyrate: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].economyrate}'),
+                                              Text('Noballs: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].noballs}'),
+                                              Text('Wides: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].wides}'),
+                                              Text('Dots: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].bowlers[bowlersIndex].dots}'),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    const SizedBox(height: 05),
+                                    const Divider(thickness: 0.25),
+                                    const SizedBox(height: 05),
+                                    const Text("Fall of Wickets", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: viewModel.cricketModelApiList[index]?.innings[inningIndex].fallofWickets.length ?? 0,
+                                      itemBuilder: (context, fallOfWicketsIndex) {
+                                        return ListTile(
+                                          title: Text('• Batsman: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].fallofWickets[fallOfWicketsIndex].batsman}'),
+                                          subtitle: Text('Score: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].fallofWickets[fallOfWicketsIndex].score}, Overs: ${viewModel.cricketModelApiList[index]?.innings[inningIndex].fallofWickets[fallOfWicketsIndex].score}'),
+                                        );
+                                      },
+                                    ),
+                                    const SizedBox(height: 05),
+                                    const Divider(thickness: 0.25),
+                                    const SizedBox(height: 05),
+                                    const Text("Power Play", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    displayRow(key: "• PP1", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].powerPlay?.pp1 ?? ""),
+                                    displayRow(key: "• PP2", value: viewModel.cricketModelApiList[index]?.innings[inningIndex].powerPlay?.pp2 ?? ""),
+                                    const SizedBox(height: 10),
+                                    const Divider(thickness: 1.0),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },),
+                        ],
+                      ),
+                      /// Nuggets
+                      ExpansionTile(
+                        tilePadding: const EdgeInsets.all(0),
+                        shape: Border.all(style: BorderStyle.none),
+                        title: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Nuggets", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                              overflow: TextOverflow.visible),
+                        ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: viewModel.cricketModelApiList[index]?.nuggets.length ?? 0,
+                              itemBuilder: (context, nuggetsIndex) {
+                                return displayRow(key: ":", value: viewModel.cricketModelApiList[index]?.nuggets[nuggetsIndex] ?? "");
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      /// Notes
+                      ExpansionTile(
+                        tilePadding: const EdgeInsets.all(0),
+                        shape: Border.all(style: BorderStyle.none),
+                        title: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Notes", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                              overflow: TextOverflow.visible),
+                        ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: viewModel.cricketModelApiList[index]?.notes.length,
+                              itemBuilder: (context, index) {
+                                String key = viewModel.cricketModelApiList[index]?.notes.keys.elementAt(index) ?? "";
+                                List<String> noteList = viewModel.cricketModelApiList[index]?.notes[key] as List<String>;
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("$key", style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                                        overflow: TextOverflow.visible),
+                                    const SizedBox(height:05),
+                                    Column(
+                                      children: noteList.map((note) {
+                                        return ListTile(
+                                          dense: true,
+                                          contentPadding: EdgeInsets.zero,
+                                          title: displayRow(key: ":", value: note),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ],
