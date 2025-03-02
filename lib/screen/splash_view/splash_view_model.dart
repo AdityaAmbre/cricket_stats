@@ -70,7 +70,7 @@ class SplashViewModel extends BaseViewModel {
   void redirectToNextPage() {
     if (cricketModelApiList != null) {
       if (cricketModelApiList!.isNotEmpty) {
-        Get.to(MatchView(cricketModelApiList!));
+        Get.offAll(MatchView(cricketModelApiList!));
       }
     }
   }

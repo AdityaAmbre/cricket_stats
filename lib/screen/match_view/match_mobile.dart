@@ -23,8 +23,9 @@ class MatchMobile extends StatelessWidget {
         ),
       ),
       title: Text(
-        Constant.appName,
-        style: TextStyle(color: ResColors.white),
+        Constant.matchPage,
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: ResColors.white),
+        overflow: TextOverflow.visible,
       ),
       backgroundColor: ResColors.primary,
     );
@@ -426,6 +427,11 @@ class MatchMobile extends StatelessWidget {
                           ),
                         ],
                       ),
+                      /// Re-direct to next screen
+                      const Divider(thickness: 0.5),
+                      const SizedBox(height: 5.0),
+                      viewTeamsButton(index),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ],
@@ -453,6 +459,31 @@ class MatchMobile extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget viewTeamsButton(int index) {
+    return SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+        child: ElevatedButton(
+          onPressed: () => viewModel.redirectToNextPage(index),
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(ResColors.primary),
+            foregroundColor: WidgetStateProperty.all(ResColors.white),
+          ),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("VIEW TEAMS", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),),
+              SizedBox(width: 10),
+              Icon(Icons.arrow_forward_sharp),
+            ],
+          ),
+        ),
       ),
     );
   }
