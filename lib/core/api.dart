@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:cricket_stats/util/logger.dart';
 
@@ -26,6 +27,8 @@ class Api {
         Logger.log("Response Failure: ", "Status Code: ${response.statusCode}");
         return null;
       }
+    } on SocketException catch (e) {
+      Logger.log("SocketException: ", e.message);
     } catch (e) {
       Logger.log("Exception: ", e.toString());
       rethrow;

@@ -28,6 +28,154 @@ class MatchMobile extends StatelessWidget {
         overflow: TextOverflow.visible,
       ),
       backgroundColor: ResColors.primary,
+      actions: [
+        IconButton(
+          icon: Icon(Icons.info_outlined, color: ResColors.white),
+          onPressed: () {
+            CustomAlertDialog.showAlertDialog(
+              context: context,
+              title: "About",
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Text("Cricket Stats - (1.0.0)", style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Icon(
+                          Icons.sports_cricket_sharp,
+                          size: 30,
+                          color: ResColors.iconColor,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    const Divider(),
+                    const SizedBox(height: 20),
+                    const Text("Designed & Developed by, Aditya Ambre.",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400
+                      ),),
+                    const SizedBox(height: 20),
+                    InkWell(
+                      onTap: () => Util.openUrl("https://github.com/AdityaAmbre"),
+                      child: const Text.rich(
+                        TextSpan(
+                          text: "• GitHub Profile: ",
+                          style: TextStyle(fontSize: 16),
+                          children: [
+                            TextSpan(
+                              text: "Aditya Ambre",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: () => Util.openUrl("https://github.com/AdityaAmbre/cricket_stats"),
+                      child: const Text.rich(
+                        TextSpan(
+                          text: "• GitHub Project: ",
+                          style: TextStyle(fontSize: 16),
+                          children: [
+                            TextSpan(
+                              text: "Source Code",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: () => Util.openUrl("https://github.com/AdityaAmbre/cricket_stats/blob/main/LICENSE"),
+                      child: const Text.rich(
+                        TextSpan(
+                          text: "• Copyrights: ",
+                          style: TextStyle(fontSize: 16),
+                          children: [
+                            TextSpan(
+                              text: "Apache License 2.0",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const Divider(),
+                    const SizedBox(height: 30),
+                    const Text("Demo APIs",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      ),),
+                    const SizedBox(height: 20),
+                    InkWell(
+                      onTap: () => Util.openUrl("https://demo.sportz.io/nzin01312019187360.json"),
+                      child: const Text.rich(
+                        TextSpan(
+                          text: "• API - 1: ",
+                          style: TextStyle(fontSize: 16),
+                          children: [
+                            TextSpan(
+                              text: "\nhttps://demo.sportz.io/nzin01312019187360.json",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: () => Util.openUrl("https://demo.sportz.io/sapk01222019186652.json"),
+                      child: const Text.rich(
+                        TextSpan(
+                          text: "• API - 2: ",
+                          style: TextStyle(fontSize: 16),
+                          children: [
+                            TextSpan(
+                              text: "\nhttps://demo.sportz.io/sapk01222019186652.json",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              onPressed: () => Get.back(),
+              buttonText: "EXIT",
+            );
+          },
+        ),
+      ],
     );
   }
 

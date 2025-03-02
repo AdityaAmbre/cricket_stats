@@ -37,6 +37,17 @@ class SplashMobile extends StatelessWidget {
               shadows: const [Shadow(color: Colors.black26, offset: Offset(2, -2))],
             ),
           ),
+          const SizedBox(height: 5.0),
+          Text(
+            Constant.appVersion,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              color: ResColors.white,
+              fontStyle: FontStyle.italic,
+              fontSize: 20,
+              shadows: const [Shadow(color: Colors.black26, offset: Offset(2, -2))],
+            ),
+          ),
           const SizedBox(height: 50),
           viewModel.isLoading
               ? CircularProgressIndicator(color: ResColors.white)
