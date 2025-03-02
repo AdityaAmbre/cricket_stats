@@ -2,6 +2,7 @@ library splash_view;
 
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
+import 'package:cricket_stats/res/res_colors.dart';
 import 'package:cricket_stats/constant/constant.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:cricket_stats/screen/splash_view/splash_view_model.dart';

@@ -17,22 +17,22 @@ class MatchMobile extends StatelessWidget {
     return AppBar(
       leading: InkWell(
         onTap: () => viewModel.onMenuClick(),
-        child: const Icon(
+        child: Icon(
           Icons.menu,
-          color: Colors.white
+          color: ResColors.white
         ),
       ),
-      title: const Text(
+      title: Text(
         Constant.appName,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: ResColors.white),
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: ResColors.primary,
     );
   }
 
   Widget _body(BuildContext context, MatchViewModel viewModel) {
     return Container(
-      color: Colors.white,
+      color: ResColors.white,
       width: double.infinity,
       child: ListView.builder(
         itemCount: viewModel.cricketModelApiList.length,
@@ -42,7 +42,7 @@ class MatchMobile extends StatelessWidget {
             child: Card(
               elevation: 6.0,
               child: ExpansionTile(
-                tilePadding: const EdgeInsets.all(0), // Remove padding
+                tilePadding: const EdgeInsets.all(0),
                 shape: Border.all(style: BorderStyle.none),
                 title: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -53,10 +53,22 @@ class MatchMobile extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              "Match: ${viewModel.cricketModelApiList[index]?.matchdetail?.match?.type ?? ""}",
-                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                              overflow: TextOverflow.visible,
+                            child: Row(
+                              children: [
+                                Icon(Icons.sports_cricket_sharp, size: 30, color: ResColors.iconColor),
+                                const SizedBox(width: 10),
+                                Text(
+                                  "Match: ${viewModel.cricketModelApiList[index]?.matchdetail?.match?.type ?? ""}",
+                                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                                  overflow: TextOverflow.visible,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  "(${viewModel.cricketModelApiList[index]?.matchdetail?.match?.league?.toUpperCase() ?? ""})",
+                                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -73,7 +85,7 @@ class MatchMobile extends StatelessWidget {
                               overflow: TextOverflow.visible,
                             ),
                           ),
-                          const Text("v/s", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
+                          Icon(Icons.compare_arrows_sharp, color: ResColors.iconColor),
                           Flexible(
                             child: Text(
                               viewModel.cricketModelApiList[index]?.teams[viewModel.cricketModelApiList[index]?.matchdetail?.teamHome]?.nameFull ?? "",
@@ -95,33 +107,47 @@ class MatchMobile extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              "Location: ${viewModel.cricketModelApiList[index]?.matchdetail?.venue?.name ?? ""}",
-                              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-                              overflow: TextOverflow.visible,
+                            child: Row(
+                              children: [
+                                Icon(Icons.location_on, color: ResColors.iconColor),
+                                const SizedBox(width: 02),
+                                Text(
+                                  viewModel.cricketModelApiList[index]?.matchdetail?.venue?.name ?? "",
+                                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 05),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Flexible(
-                            child: Text(
-                              "Date: ${viewModel.cricketModelApiList[index]?.matchdetail?.match?.date ?? ""}",
-                              style: const TextStyle(fontSize: 15, fontStyle: FontStyle.italic, fontWeight: FontWeight.w400),
-                              overflow: TextOverflow.visible,
-                            ),
+                          Row(
+                            children: [
+                              Icon(Icons.date_range, color: ResColors.iconColor),
+                              const SizedBox(width: 02),
+                              Text(
+                                viewModel.cricketModelApiList[index]?.matchdetail?.match?.date ?? "",
+                                style: const TextStyle(fontSize: 15, fontStyle: FontStyle.italic, fontWeight: FontWeight.w400),
+                                overflow: TextOverflow.visible,
+                              ),
+                            ],
                           ),
                           const Text("|", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300)),
-                          Flexible(
-                            child: Text(
-                              "Time: ${viewModel.cricketModelApiList[index]?.matchdetail?.match?.time ?? ""}",
-                              style: const TextStyle(fontSize: 15, fontStyle: FontStyle.italic, fontWeight: FontWeight.w400),
-                              overflow: TextOverflow.visible,
-                            ),
+                          Row(
+                            children: [
+                              Icon(Icons.access_time, color: ResColors.iconColor),
+                              const SizedBox(width: 02),
+                              Text(
+                                viewModel.cricketModelApiList[index]?.matchdetail?.match?.time ?? "",
+                                style: const TextStyle(fontSize: 15, fontStyle: FontStyle.italic, fontWeight: FontWeight.w400),
+                                overflow: TextOverflow.visible,
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -133,10 +159,11 @@ class MatchMobile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const Divider(),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text("Miscellaneous", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-                          overflow: TextOverflow.visible,),
+                          overflow: TextOverflow.visible),
                       ),
                       displayRow(
                         key: "Weather",
@@ -144,15 +171,59 @@ class MatchMobile extends StatelessWidget {
                       ),
                       displayRow(
                         key: "Status",
-                        value: viewModel.cricketModelApiList[index]?.matchdetail?.series?.status ?? "",
+                        value: viewModel.cricketModelApiList[index]?.matchdetail?.status ?? "",
                       ),
                       displayRow(
-                        key: "Tour",
-                        value: viewModel.cricketModelApiList[index]?.matchdetail?.series?.tourName ?? "",
+                        key: "Player Match",
+                        value: viewModel.cricketModelApiList[index]?.matchdetail?.playerMatch ?? "",
                       ),
                       displayRow(
-                        key: "Series",
-                        value: viewModel.cricketModelApiList[index]?.matchdetail?.series?.name ?? "",
+                        key: "Result",
+                        value: viewModel.cricketModelApiList[index]?.matchdetail?.result ?? "",
+                      ),
+                      const Divider(thickness: 0.25),
+                      ExpansionTile(
+                        tilePadding: const EdgeInsets.all(0),
+                        shape: Border.all(style: BorderStyle.none),
+                        title: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Match Detail", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                            overflow: TextOverflow.visible),
+                        ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text("Match", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                      overflow: TextOverflow.visible),
+                                  displayRow(key: "• LiveCoverage", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.livecoverage ?? ""),
+                                  displayRow(key: "• Code", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.code ?? ""),
+                                  displayRow(key: "• League", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.league ?? ""),
+                                  displayRow(key: "• Type", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.type ?? ""),
+                                  displayRow(key: "• Number", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.number ?? ""),
+                                  displayRow(key: "• Offset", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.offset ?? ""),
+                                  displayRow(key: "• Day Night", value: viewModel.cricketModelApiList[index]?.matchdetail?.match?.daynight ?? ""),
+                                  const SizedBox(height: 10),
+                                  const Text("Series", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                      overflow: TextOverflow.visible),
+                                  displayRow(key: "• Name", value: viewModel.cricketModelApiList[index]?.matchdetail?.series?.name ?? ""),
+                                  displayRow(key: "• Status", value: viewModel.cricketModelApiList[index]?.matchdetail?.series?.status ?? ""),
+                                  displayRow(key: "• Tour Name", value: viewModel.cricketModelApiList[index]?.matchdetail?.series?.tourName ?? ""),
+                                  const SizedBox(height: 10),
+                                  const Text("Officials", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                      overflow: TextOverflow.visible),
+                                  displayRow(key: "• Umpires", value: viewModel.cricketModelApiList[index]?.matchdetail?.officials?.umpires ?? ""),
+                                  displayRow(key: "• Referee", value: viewModel.cricketModelApiList[index]?.matchdetail?.officials?.referee ?? ""),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -172,7 +243,7 @@ class MatchMobile extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
               child: Text(
                 "$key: $value",
                 style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400),

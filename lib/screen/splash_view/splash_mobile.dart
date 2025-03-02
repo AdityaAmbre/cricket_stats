@@ -14,32 +14,32 @@ class SplashMobile extends StatelessWidget {
 
   Widget _body(BuildContext context, SplashViewModel viewModel) {
     return Container(
-      color: Colors.green,
+      color: ResColors.primary,
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.sports_cricket_sharp,
-            color: Colors.white,
+            color: ResColors.white,
             size: 120,
-            shadows: [Shadow(color: Colors.black26, offset: Offset(-4, 4))],
+            shadows: const [Shadow(color: Colors.black26, offset: Offset(-4, 4))],
           ),
           const SizedBox(height: 25),
-          const Text(
+          Text(
             Constant.appName,
             style: TextStyle(
               fontWeight: FontWeight.w400,
-              color: Colors.white,
+              color: ResColors.white,
               fontStyle: FontStyle.italic,
               fontSize: 27,
-              shadows: [Shadow(color: Colors.black26, offset: Offset(2, -2))],
+              shadows: const [Shadow(color: Colors.black26, offset: Offset(2, -2))],
             ),
           ),
           const SizedBox(height: 50),
           viewModel.isLoading
-              ? const CircularProgressIndicator(color: Colors.white)
+              ? CircularProgressIndicator(color: ResColors.white)
               : const SizedBox.shrink(),
         ],
       ),
