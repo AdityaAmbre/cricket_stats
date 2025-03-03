@@ -42,51 +42,100 @@ class TeamMobile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ResColors.primary,
+                      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.sports_cricket_sharp, size: 30, color: ResColors.white),
+                                const SizedBox(width: 10),
+                                Flexible(
+                                  flex: 2,
+                                  child: Text(
+                                    "Match: ${viewModel.cricketModelApiList[viewModel.selectedIndex]?.matchdetail?.match?.type ?? ""}",
+                                    style: TextStyle(color: ResColors.white, fontSize: 20, fontWeight: FontWeight.w600),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Flexible(
+                                  flex: 1,
+                                  child: Text(
+                                    "(${viewModel.cricketModelApiList[viewModel.selectedIndex]?.matchdetail?.match?.league?.toUpperCase() ?? ""})",
+                                    style: TextStyle(color: ResColors.white, fontSize: 20, fontWeight: FontWeight.w600),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 7.5),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   child: InkWell(
                     onTap: () => viewModel.onTapTeamSelection(0),
-                    child: Container(
-                      // color: Colors.red,
-                      decoration: BoxDecoration(
-                        color: viewModel.isTeamASelected
-                            ? const Color.fromARGB(255, 83, 155, 83) : const Color.fromARGB(125, 200, 200, 200),
-                        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                      ),
-                      height: MediaQuery.of(context).size.width*0.40,
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                  ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                  ?.matchdetail?.teamAway]?.nameFull ?? "",
-                                  style: TextStyle(
-                                      color: viewModel.isTeamASelected
-                                          ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w600
-                                  ),
-                                  overflow: TextOverflow.visible
-                              ),
-                              const SizedBox(height: 10),
-                              Text("(${viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                  ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                  ?.matchdetail?.teamAway]?.nameShort ?? ""})",
-                                  style: TextStyle(
-                                      color: viewModel.isTeamASelected
-                                          ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  overflow: TextOverflow.visible
-                              ),
-                            ],
+                    child: Card(
+                      elevation: 4.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: viewModel.isTeamASelected
+                              ? const Color.fromARGB(255, 83, 155, 83) : const Color.fromARGB(125, 200, 200, 200),
+                          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        height: MediaQuery.of(context).size.width*0.40,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(viewModel.cricketModelApiList[viewModel.selectedIndex]
+                                    ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
+                                    ?.matchdetail?.teamAway]?.nameFull ?? "",
+                                    style: TextStyle(
+                                        color: viewModel.isTeamASelected
+                                            ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600
+                                    ),
+                                    overflow: TextOverflow.visible
+                                ),
+                                const SizedBox(height: 10),
+                                Text("(${viewModel.cricketModelApiList[viewModel.selectedIndex]
+                                    ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
+                                    ?.matchdetail?.teamAway]?.nameShort ?? ""})",
+                                    style: TextStyle(
+                                        color: viewModel.isTeamASelected
+                                            ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                    overflow: TextOverflow.visible
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -99,46 +148,82 @@ class TeamMobile extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () => viewModel.onTapTeamSelection(1),
-                    child: Container(
-                      // color: Colors.red,
-                      decoration: BoxDecoration(
-                        color: viewModel.isTeamBSelected
-                            ? const Color.fromARGB(255, 83, 155, 83) : const Color.fromARGB(125, 200, 200, 200),
-                        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                      ),
-                      height: MediaQuery.of(context).size.width*0.40,
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                ?.matchdetail?.teamHome]?.nameFull ?? "",
-                                style: TextStyle(
-                                  color: viewModel.isTeamBSelected
-                                      ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600
-                                ),
-                                overflow: TextOverflow.visible
-                              ),
-                              const SizedBox(height: 10),
-                              Text("(${viewModel.cricketModelApiList[viewModel.selectedIndex]
+                    child: Card(
+                      elevation: 4.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: viewModel.isTeamBSelected
+                              ? const Color.fromARGB(255, 83, 155, 83) : const Color.fromARGB(125, 200, 200, 200),
+                          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        height: MediaQuery.of(context).size.width*0.40,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(viewModel.cricketModelApiList[viewModel.selectedIndex]
                                   ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
-                                  ?.matchdetail?.teamHome]?.nameShort ?? ""})",
+                                  ?.matchdetail?.teamHome]?.nameFull ?? "",
                                   style: TextStyle(
                                     color: viewModel.isTeamBSelected
                                         ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600
                                   ),
                                   overflow: TextOverflow.visible
-                              ),
-                            ],
+                                ),
+                                const SizedBox(height: 10),
+                                Text("(${viewModel.cricketModelApiList[viewModel.selectedIndex]
+                                    ?.teams[viewModel.cricketModelApiList[viewModel.selectedIndex]
+                                    ?.matchdetail?.teamHome]?.nameShort ?? ""})",
+                                    style: TextStyle(
+                                      color: viewModel.isTeamBSelected
+                                          ? ResColors.white : const Color.fromARGB(250, 45, 45, 45),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                    overflow: TextOverflow.visible
+                                ),
+                              ],
+                            ),
                           ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 15.0),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: ResColors.primary,
+                        borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.group, size: 30, color: ResColors.white),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                "Team Players",
+                                style: TextStyle(color: ResColors.white, fontSize: 20, fontWeight: FontWeight.w600),
+                                overflow: TextOverflow.visible,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -150,35 +235,53 @@ class TeamMobile extends StatelessWidget {
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
                     child: SizedBox(
-                        height: constraints.maxHeight,
+                      height: constraints.maxHeight,
                       child: ListView.builder(
-                        itemCount: viewModel.teamMap![viewModel.isTeamASelected ? viewModel.cricketModelApiList[viewModel.selectedIndex]?.matchdetail?.teamHome : viewModel.cricketModelApiList[viewModel.selectedIndex]?.matchdetail?.teamAway]?.players.length,
+                        itemCount: viewModel.teamMap![viewModel.isTeamASelected
+                            ? viewModel.cricketModelApiList[viewModel.selectedIndex]?.matchdetail?.teamHome
+                            : viewModel.cricketModelApiList[viewModel.selectedIndex]?.matchdetail?.teamAway
+                        ]?.players.length ?? 0,
                         itemBuilder: (context, index) {
-                          viewModel.players.clear();
-                          viewModel.mapTeams();
-
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  color: Colors.white,
-                                  width: constraints.maxWidth/1.05,
-                                  child: ListTile(
-                                    onTap: () => viewModel.showAlertDialog(context, index, viewModel.players[index].nameFull ?? "-"),
-                                    title: Text("Player: ${viewModel.players[index].nameFull ?? "-"} ${viewModel.players[index].iscaptain ?? false ? "(Captain)" : ""}"),
-                                    subtitle: Text("Position: ${viewModel.players[index].position ?? "-"}"),
-                                    trailing: Text(viewModel.players[index].iskeeper ?? false ? "(Wicket-Keeper)" : ""),
+                          if (index == 0) {
+                            viewModel.players.clear();
+                            viewModel.mapTeams();
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              elevation: 4.0,
+                              child: Container(
+                                constraints: BoxConstraints(
+                                  maxWidth: constraints.maxWidth * 0.95,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: ResColors.white,
+                                  borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                                ),
+                                child: ListTile(
+                                  leading: Icon(Icons.person, size: 30, color: ResColors.primary),
+                                  onTap: () => viewModel.showAlertDialog(context, index, viewModel.players[index].nameFull ?? "-"),
+                                  title: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "${viewModel.players[index].nameFull ?? "-"}"
+                                              " ${viewModel.players[index].iscaptain ?? false ? "(Captain)" : ""}",
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                  subtitle: Text("Position: ${viewModel.players[index].position ?? "-"}"),
+                                  trailing: Text(viewModel.players[index].iskeeper ?? false ? "(Wicket-Keeper)" : "",
+                                    style: const TextStyle(fontStyle: FontStyle.italic),),
                                 ),
                               ),
-                            ],
+                            ),
                           );
-                        },),
+                        },
+                      ),
                     ),
                   );
                 },

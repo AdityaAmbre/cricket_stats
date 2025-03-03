@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:cricket_stats/util/logger.dart';
 
@@ -29,6 +29,7 @@ class Api {
       }
     } on SocketException catch (e) {
       Logger.log("SocketException: ", e.message);
+      rethrow;
     } catch (e) {
       Logger.log("Exception: ", e.toString());
       rethrow;

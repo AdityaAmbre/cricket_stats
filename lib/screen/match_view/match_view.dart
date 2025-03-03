@@ -1,10 +1,10 @@
 library match_view;
 
-import 'package:cricket_stats/util/util.dart';
-import 'package:cricket_stats/widget/dialog.dart';
 import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
+import 'package:cricket_stats/util/util.dart';
+import 'package:cricket_stats/widget/dialog.dart';
 import 'package:cricket_stats/res/res_colors.dart';
 import 'package:cricket_stats/constant/constant.dart';
 import 'package:cricket_stats/model/cricket_model.dart';

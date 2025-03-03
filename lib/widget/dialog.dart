@@ -12,7 +12,7 @@ class CustomAlertDialog {
   }) {
     showDialog(
       context: context,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(title ?? "", style: const TextStyle(fontSize: 22),),

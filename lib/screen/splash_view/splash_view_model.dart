@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:cricket_stats/core/api.dart';
 import 'package:cricket_stats/util/logger.dart';
+import 'package:cricket_stats/widget/dialog.dart';
 import 'package:cricket_stats/constant/constant.dart';
 import 'package:cricket_stats/model/cricket_model.dart';
 import 'package:cricket_stats/screen/match_view/match_view.dart';
@@ -71,7 +72,23 @@ class SplashViewModel extends BaseViewModel {
     if (cricketModelApiList != null) {
       if (cricketModelApiList!.isNotEmpty) {
         Get.offAll(MatchView(cricketModelApiList!));
+      } else {
+        CustomAlertDialog.showAlertDialog(
+          context: context,
+          title: "Alert",
+          child: const Text("No data found."),
+          buttonText: "Exit",
+          onPressed: () => Get.back(),
+        );
       }
+    } else {
+      CustomAlertDialog.showAlertDialog(
+        context: context,
+        title: "Alert",
+        child: const Text("No data found."),
+        buttonText: "Exit",
+        onPressed: () => Get.back(),
+      );
     }
   }
 }

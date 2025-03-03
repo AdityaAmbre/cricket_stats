@@ -58,7 +58,7 @@ class TeamViewModel extends BaseViewModel {
   void showAlertDialog(BuildContext context, int index, String player) {
     showDialog(
       context: context,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Column(
